@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.db
+.venv/
+tts_cache/
+.DS_Store

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VoiceAgent AI — HomeServ Pro Demo</title>
+  <link rel="stylesheet" href="/static/styles.css"/>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-logo">🎙️</div>
+    <div>
+      <div class="header-title">VoiceAgent AI</div>
+      <div class="header-sub">Real-time Voice AI · HomeServ Pro Demo</div>
+    </div>
+    <span id="header-badge" class="header-badge">Connecting…</span>
+    <button id="new-call-btn" style="margin-left:12px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#e2e8f0;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;">New Call</button>
+  </header>
+
+  <div class="main-layout">
+
+    <!-- LEFT: Transcript -->
+    <aside class="transcript-panel">
+      <div class="panel-header">
+        <span>Live Transcript</span>
+        <span id="turn-count" style="font-size:10px;color:#475569">0 turns</span>
+      </div>
+      <div id="transcript-list" class="transcript-list"></div>
+    </aside>
+
+    <!-- CENTER: Voice UI -->
+    <main class="voice-center">
+
+      <div id="status-bar" class="status-bar ready">
+        <span id="status-dot" class="status-dot"></span>
+        <span id="status-text">Initializing…</span>
+      </div>
+
+      <!-- Waveform -->
+      <div id="waveform" class="waveform">
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div><div class="wave-bar"></div>
+        <div class="wave-bar"></div>
+      </div>
+
+      <!-- Mic button -->
+      <div class="mic-wrap">
+        <div id="mic-ripple" class="mic-ripple"></div>
+        <button id="mic-btn" class="mic-btn" aria-label="Tap to speak">🎤</button>
+      </div>
+      <p class="mic-hint">Tap to speak · Tap again to stop</p>
+
+      <!-- Appointment confirmation card -->
+      <div id="appointment-card" class="appointment-card">
+        <h3>✅ Appointment Confirmed!</h3>
+        <div id="appt-details" class="collected-grid"></div>
+      </div>
+
+    </main>
+
+    <!-- RIGHT: Info panel -->
+    <aside class="info-panel">
+
+      <div class="info-section">
+        <h3>Call State</h3>
+        <div id="state-badge" class="state-badge">GREETING</div>
+      </div>
+
+      <div class="info-section">
+        <h3>Info Collected</h3>
+        <div id="collected-info" class="collected-grid">
+          <p style="font-size:11px;color:#64748b">Collecting info…</p>
+        </div>
+      </div>
+
+      <div class="info-section">
+        <h3>Services</h3>
+        <div class="info-item"><span class="info-icon">❄️</span><span class="info-text">HVAC · Heating & Cooling</span></div>
+        <div class="info-item"><span class="info-icon">🔧</span><span class="info-text">Plumbing · Pipes & Drains</span></div>
+        <div class="info-item"><span class="info-icon">⚡</span><span class="info-text">Electrical · Wiring & Panels</span></div>
+      </div>
+
+      <div class="info-section">
+        <h3>Sample Phrases</h3>
+        <div class="info-item"><span class="info-icon">💬</span><span class="info-text">"My AC stopped working"</span></div>
+        <div class="info-item"><span class="info-icon">💬</span><span class="info-text">"I have a burst pipe — emergency!"</span></div>
+        <div class="info-item"><span class="info-icon">💬</span><span class="info-text">"I need someone Thursday morning"</span></div>
+        <div class="info-item"><span class="info-icon">💬</span><span class="info-text">"My name is John, 123 Oak Street"</span></div>
+      </div>
+
+      <div class="info-section">
+        <h3>Tech Stack</h3>
+        <div class="info-item"><span class="info-icon">🧠</span><span class="info-text">Claude claude-haiku — AI responses</span></div>
+        <div class="info-item"><span class="info-icon">🔊</span><span class="info-text">ElevenLabs TTS / Browser fallback</span></div>
+        <div class="info-item"><span class="info-icon">🎤</span><span class="info-text">Web Speech API (STT)</span></div>
+        <div class="info-item"><span class="info-icon">⚡</span><span class="info-text">WebSocket real-time</span></div>
+      </div>
+
+    </aside>
+  </div>
+
+  <script src="/static/voice_ui.js"></script>
+</body>
+</html>
