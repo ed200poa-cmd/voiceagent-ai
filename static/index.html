@@ -19,6 +19,28 @@
     <button id="new-call-btn" style="margin-left:12px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);color:#e2e8f0;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;">New Call</button>
   </header>
 
+  <!-- Start overlay — required for browser autoplay policy -->
+  <div id="start-overlay" style="
+    position:fixed;inset:0;z-index:200;
+    background:rgba(6,3,15,0.93);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;
+    backdrop-filter:blur(4px);
+  ">
+    <div style="font-size:64px;line-height:1">🎙️</div>
+    <h2 style="font-size:26px;font-weight:800;color:#f0f9ff;margin:0">VoiceAgent AI</h2>
+    <p style="font-size:15px;color:#94a3b8;margin:0;text-align:center;max-width:300px;line-height:1.6">
+      AI voice assistant powered by Claude + ElevenLabs Josh voice.<br>Click to begin your session.
+    </p>
+    <button id="start-btn" style="
+      background:#4f46e5;color:#fff;border:none;
+      padding:14px 44px;border-radius:12px;
+      font-size:16px;font-weight:700;cursor:pointer;margin-top:8px;
+    " onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+      ▶ Start Conversation
+    </button>
+    <p style="font-size:12px;color:#475569;margin:0">Chrome or Edge recommended for voice input</p>
+  </div>
+
   <div class="main-layout">
 
     <!-- LEFT: Transcript -->

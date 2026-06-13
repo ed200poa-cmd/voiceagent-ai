@@ -25,10 +25,14 @@ const collectedEl  = document.getElementById('collected-info');
 const newCallBtn   = document.getElementById('new-call-btn');
 
 // ── Init ─────────────────────────────────────────────────────────────────────
-window.addEventListener('load', async () => {
-  await startSession();
+window.addEventListener('load', () => {
   setupMicButton();
   setupSpeechRecognition();
+});
+
+document.getElementById('start-btn')?.addEventListener('click', async () => {
+  document.getElementById('start-overlay').style.display = 'none';
+  await startSession();
 });
 
 async function startSession() {
@@ -178,7 +182,7 @@ async function speak(text, audioBase64) {
   waveform.classList.add('active');
 
   if (audioBase64) {
-    await playBase64Audio(audioBase64);
+    await playBase64Audio(audioBase64, text);
   } else {
     await browserSpeak(text);
   }
@@ -186,13 +190,13 @@ async function speak(text, audioBase64) {
   waveform.classList.remove('active');
 }
 
-function playBase64Audio(base64) {
+function playBase64Audio(base64, fallbackText) {
   return new Promise((resolve) => {
     const audio = new Audio('data:audio/mp3;base64,' + base64);
     currentAudio = audio;
-    audio.onended = resolve;
-    audio.onerror = () => { browserSpeak('').then(resolve); };
-    audio.play().catch(() => browserSpeak(currentAudio = null).then(resolve));
+    audio.onended = () => { currentAudio = null; resolve(); };
+    audio.onerror = () => { currentAudio = null; browserSpeak(fallbackText || '').then(resolve); };
+    audio.play().catch(() => { currentAudio = null; browserSpeak(fallbackText || '').then(resolve); });
   });
 }
 
