@@ -5,7 +5,7 @@ from session_manager import Session, CallState
 import anthropic
 
 logger = logging.getLogger(__name__)
-MODEL = "claude-haiku-20240307"
+MODEL = "claude-haiku-4-5-20251001"
 
 SYSTEM_PROMPT = """You are Alex, a friendly AI receptionist for HomeServ Pro, a home services company (HVAC, plumbing, electrical).
 

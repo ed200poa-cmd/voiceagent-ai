@@ -9,7 +9,7 @@ import httpx
 logger = logging.getLogger(__name__)
 
 ELEVENLABS_API_KEY = os.getenv("ELEVENLABS_API_KEY", "")
-ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "pNInz6obpgDQGcFmaJgB")  # Adam — clear male voice
+ELEVENLABS_VOICE_ID = os.getenv("ELEVENLABS_VOICE_ID", "21m00Tcm4TlvDq8ikWAM")  # Rachel — warm natural female voice
 AUDIO_CACHE_DIR = Path("tts_cache")
 
 
@@ -37,7 +37,7 @@ async def synthesize(text: str) -> str | None:
                 headers={"xi-api-key": api_key, "Content-Type": "application/json"},
                 json={
                     "text": text,
-                    "model_id": "eleven_turbo_v2",
+                    "model_id": "eleven_turbo_v2_5",
                     "voice_settings": {"stability": 0.5, "similarity_boost": 0.75},
                 },
             )

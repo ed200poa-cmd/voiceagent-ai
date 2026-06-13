@@ -203,7 +203,10 @@ function browserSpeak(text) {
     const utt = new SpeechSynthesisUtterance(text);
     utt.rate = 1.0; utt.pitch = 1.0;
     const voices = synth.getVoices();
-    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Google US English') || v.lang === 'en-US');
+    const femalePrefs = ['Samantha','Nicky','Karen','Moira','Google UK English Female','Microsoft Zira','Microsoft Emma','Google US English'];
+    const preferred = femalePrefs.map(n => voices.find(v => v.name.includes(n))).find(Boolean)
+      || voices.find(v => v.lang === 'en-US' && (v.name.toLowerCase().includes('female') || v.name.includes('Samantha') || v.name.includes('Karen')))
+      || voices.find(v => v.lang === 'en-US');
     if (preferred) utt.voice = preferred;
     utt.onend = resolve;
     utt.onerror = resolve;
